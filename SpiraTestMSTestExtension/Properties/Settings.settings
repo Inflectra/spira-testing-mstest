@@ -2,8 +2,26 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="SpiraTestMSTestExtension_SpiraImportExport_ImportExport" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost/SpiraTest/Services/v2_2/ImportExport.asmx</Value>
+    <Setting Name="Url" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Login" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ProjectId" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="ReleaseId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="TestSetId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="RecordTestRun" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

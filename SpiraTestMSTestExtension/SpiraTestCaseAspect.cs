@@ -74,8 +74,8 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
                 result.Time = (timeAfterTest - timeBeforeTest).TotalSeconds;
 
                 // Log the results in SpiraTest
-                string recordTestRun = ConfigurationSettings.AppSettings["RecordTestRun"];
-                if (recordTestRun.Equals("true", StringComparison.InvariantCultureIgnoreCase))
+                bool recordTestRun = Properties.Settings.Default.RecordTestRun;
+                if (recordTestRun)
                 {
                     Run(result);
                 }
@@ -121,19 +121,21 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
 
                 //Get the URL, Login, Password and ProjectId from the 
                 // config file
-                string url = ConfigurationSettings.AppSettings[defaultConfigPrefix + ":Url"];
-                string login = ConfigurationSettings.AppSettings[defaultConfigPrefix + ":Login"];
-                string password = ConfigurationSettings.AppSettings[defaultConfigPrefix + ":Password"];
-                int projectId = Int32.Parse(ConfigurationSettings.AppSettings[defaultConfigPrefix + ":ProjectId"]);
+                string url = Properties.Settings.Default.Url;
+                string login = Properties.Settings.Default.Login;
+                string password = Properties.Settings.Default.Password;
+                int projectId = Properties.Settings.Default.ProjectId;
                 Nullable<int> releaseId = null;
-                if (!String.IsNullOrEmpty(ConfigurationSettings.AppSettings[defaultConfigPrefix + ":ReleaseId"]))
+                int tempReleaseId;
+                if (Int32.TryParse(Properties.Settings.Default.ReleaseId, out tempReleaseId))
                 {
-                    releaseId = Int32.Parse(ConfigurationSettings.AppSettings[defaultConfigPrefix + ":ReleaseId"]);
+                    releaseId = tempReleaseId;
                 }
                 Nullable<int> testSetId = null;
-                if (!String.IsNullOrEmpty(ConfigurationSettings.AppSettings[defaultConfigPrefix + ":TestSetId"]))
+                int tempTestSetId;
+                if (Int32.TryParse(Properties.Settings.Default.TestSetId, out tempTestSetId))
                 {
-                    testSetId = Int32.Parse(ConfigurationSettings.AppSettings[defaultConfigPrefix + ":TestSetId"]);
+                    testSetId = tempTestSetId;
                 }
 
                 //Now we need to extract the result information
