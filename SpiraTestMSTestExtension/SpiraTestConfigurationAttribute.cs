@@ -35,7 +35,12 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
         /// <summary>
         /// Release id
         /// </summary>
-        private int releaseId;
+        private Nullable<int> releaseId;
+
+        /// <summary>
+        /// Test Set id
+        /// </summary>
+        private Nullable<int> testSetId;
 
         #endregion // Fields
 
@@ -104,7 +109,7 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
         /// <summary>
         /// The SpiraTest release being tested
         /// </summary>
-        public int ReleaseId
+        public Nullable<int> ReleaseId
         {
             get
             {
@@ -113,6 +118,21 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
             set
             {
                 this.releaseId = value;
+            }
+        }
+
+        /// <summary>
+        /// The SpiraTest test set being tested
+        /// </summary>
+        public Nullable<int> TestSetId
+        {
+            get
+            {
+                return this.testSetId;
+            }
+            set
+            {
+                this.testSetId = value;
             }
         }
 
@@ -180,6 +200,23 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
         /// <summary>
         /// The constructor is called when the attribute is set.
         /// </summary>
+        /// <param name="projectId">The SpiraTest project being tested</param>
+        /// <param name="releaseId">The ID of the release being tested</param>
+        /// <param name="testSetId">The ID of the test set being tested</param>
+        public SpiraTestConfigurationAttribute(int projectId, int releaseId, int testSetId)
+        {
+            //Update the local member variables
+            this.url = ConfigurationSettings.AppSettings["Url"];
+            this.login = ConfigurationSettings.AppSettings["Login"];
+            this.password = ConfigurationSettings.AppSettings["Password"];
+            this.projectId = projectId;
+            this.releaseId = releaseId;
+            this.testSetId = testSetId;
+        }
+
+        /// <summary>
+        /// The constructor is called when the attribute is set.
+        /// </summary>
         /// <param name="url">The URL to the SpiraTest instance</param>
         /// <param name="login">A valid SpiraTest login</param>
         /// <param name="password">A valid SpiraTest password</param>
@@ -205,6 +242,26 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
             this.password = password;
             this.projectId = projectId;
             this.releaseId = releaseId;
+        }
+
+        /// <summary>
+        /// The constructor is called when the attribute is set.
+        /// </summary>
+        /// <param name="url">The URL to the SpiraTest instance</param>
+        /// <param name="login">A valid SpiraTest login</param>
+        /// <param name="password">A valid SpiraTest password</param>
+        /// <param name="projectId">The SpiraTest project being tested</param>
+        /// <param name="releaseId">The ID of the release being tested</param>
+        /// <param name="testSetId">The ID of the test set being tested</param>
+        public SpiraTestConfigurationAttribute(string url, string login, string password, int projectId, int releaseId, int testSetId)
+        {
+            //Update the local member variables
+            this.url = url;
+            this.login = login;
+            this.password = password;
+            this.projectId = projectId;
+            this.releaseId = releaseId;
+            this.testSetId = testSetId;
         }
 
         #endregion // Properties

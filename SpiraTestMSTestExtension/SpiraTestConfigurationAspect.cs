@@ -34,7 +34,8 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
                 string login = TestClassAttribute.Login;
                 string password = TestClassAttribute.Password;
                 int projectId = TestClassAttribute.ProjectId;
-                int releaseId = TestClassAttribute.ReleaseId;
+                Nullable<int> releaseId = TestClassAttribute.ReleaseId;
+                Nullable<int> testSetId = TestClassAttribute.TestSetId;
             }
 
             IMessage returnMessage = _nextSink.SyncProcessMessage(msg);

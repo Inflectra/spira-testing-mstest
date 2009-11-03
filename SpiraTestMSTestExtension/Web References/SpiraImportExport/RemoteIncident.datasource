@@ -5,6 +5,6 @@
     Renaming the file extension or editing the content of this file may   
     cause the file to be unrecognizable by the program.
 -->
-<GenericObjectDataSource DisplayName="TestRunData" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension.SpiraTestExecute.TestRunData, Web References.SpiraTestExecute.Reference.cs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+<GenericObjectDataSource DisplayName="RemoteIncident" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension.SpiraImportExport.RemoteIncident, Web References.SpiraImportExport.Reference.cs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

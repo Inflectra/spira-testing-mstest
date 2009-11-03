@@ -69,7 +69,7 @@
     <Compile Include="SpiraTestCaseAttribute.cs" />
     <Compile Include="TestCaseResult.cs" />
     <Compile Include="TestProperty.cs" />
-    <Compile Include="Web References\SpiraTestExecute\Reference.cs">
+    <Compile Include="Web References\SpiraImportExport\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -77,47 +77,100 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MSTestExtensionsTest.csproj" />
-    <None Include="Web References\SpiraTestExecute\TestExecute.disco" />
+    <None Include="Web References\SpiraImportExport\ImportExport.disco" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost/SpiraTest/Services/TestExecute.asmx">
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\SpiraImportExport\ImportExport.wsdl" />
+    <None Include="Web References\SpiraImportExport\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteCustomList.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteCustomListValue.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteCustomProperty.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteDataMapping.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteDocument.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteIncident.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteIncidentPriority.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteIncidentResolution.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteIncidentSeverity.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteIncidentStatus.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteIncidentType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteProject.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteProjectCustomProperty.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteRelease.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteRequirement.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteTask.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteTestCase.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteTestCaseParameter.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteTestRun.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteTestSet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteTestStep.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SpiraImportExport\RemoteUser.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost/SpiraTest/Services/v2_2/ImportExport.asmx">
       <UrlBehavior>Static</UrlBehavior>
-      <RelPath>Web References\SpiraTestExecute\</RelPath>
-      <UpdateFromURL>http://localhost/SpiraTest/Services/TestExecute.asmx</UpdateFromURL>
+      <RelPath>Web References\SpiraImportExport\</RelPath>
+      <UpdateFromURL>http://localhost/SpiraTest/Services/v2_2/ImportExport.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>MSTestExtensions_server_TestExecute</CachedSettingsPropName>
+      <CachedSettingsPropName>SpiraTestMSTestExtension_SpiraImportExport_ImportExport</CachedSettingsPropName>
     </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\SpiraTestExecute\ProjectData.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\SpiraTestExecute\ProjectData.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Web References\SpiraTestExecute\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\SpiraTestExecute\TestExecute.wsdl" />
-    <None Include="Web References\SpiraTestExecute\TestRunData.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
-    <None Include="Web References\SpiraTestExecute\TestRunData.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

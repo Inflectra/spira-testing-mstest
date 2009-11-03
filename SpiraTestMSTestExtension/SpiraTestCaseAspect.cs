@@ -14,7 +14,7 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
         #region Constants
 
         private const string CLASS_NAME = "SpiraTestCase::";
-        protected const string TEST_EXECUTE_WEB_SERVICES_URL = "/Services/TestExecute.asmx";
+        protected const string TEST_EXECUTE_WEB_SERVICES_URL = "/Services/v2_2/ImportExport.asmx";
 
         internal const string SOURCE_NAME = "SpiraTestMSTestAddIn";
         internal const string TEST_RUNNER_NAME = "MSTest";	//This is the name we pass to SpiraTest
@@ -125,7 +125,16 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
                 string login = ConfigurationSettings.AppSettings[defaultConfigPrefix + ":Login"];
                 string password = ConfigurationSettings.AppSettings[defaultConfigPrefix + ":Password"];
                 int projectId = Int32.Parse(ConfigurationSettings.AppSettings[defaultConfigPrefix + ":ProjectId"]);
-                int releaseId = Int32.Parse(ConfigurationSettings.AppSettings[defaultConfigPrefix + ":ReleaseId"]);
+                Nullable<int> releaseId = null;
+                if (!String.IsNullOrEmpty(ConfigurationSettings.AppSettings[defaultConfigPrefix + ":ReleaseId"]))
+                {
+                    releaseId = Int32.Parse(ConfigurationSettings.AppSettings[defaultConfigPrefix + ":ReleaseId"]);
+                }
+                Nullable<int> testSetId = null;
+                if (!String.IsNullOrEmpty(ConfigurationSettings.AppSettings[defaultConfigPrefix + ":TestSetId"]))
+                {
+                    testSetId = Int32.Parse(ConfigurationSettings.AppSettings[defaultConfigPrefix + ":TestSetId"]);
+                }
 
                 //Now we need to extract the result information
                 int executionStatusId = -1;
@@ -158,7 +167,7 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
 
                 //Instantiate the web-service proxy class and set the URL from the text box
                 bool success = false;
-                SpiraTestExecute.TestExecute spiraTestExecuteProxy = new SpiraTestExecute.TestExecute();
+                SpiraImportExport.ImportExport spiraTestExecuteProxy = new SpiraImportExport.ImportExport();
                 spiraTestExecuteProxy.Url = url + TEST_EXECUTE_WEB_SERVICES_URL;
 
                 //Create a new cookie container to hold the session handle
@@ -166,7 +175,7 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
                 spiraTestExecuteProxy.CookieContainer = cookieContainer;
 
                 //Attempt to authenticate the user
-                success = spiraTestExecuteProxy.Authenticate(login, password);
+                success = spiraTestExecuteProxy.Connection_Authenticate(login, password);
                 if (!success)
                 {
                     throw new Exception(
@@ -174,7 +183,7 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
                 }
 
                 //Now connect to the specified project
-                success = spiraTestExecuteProxy.ConnectToProject(projectId);
+                success = spiraTestExecuteProxy.Connection_ConnectToProject(projectId);
                 if (!success)
                 {
                     throw new Exception(
@@ -182,22 +191,22 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
                 }
 
                 //Now actually record the test run itself
-                spiraTestExecuteProxy.RecordTestRun(
-                    -1,
-                    testCaseId,
-                    releaseId,
-                    startDate,
-                    endDate,
-                    executionStatusId,
-                    TEST_RUNNER_NAME,
-                    testCaseName,
-                    assertCount,
-                    message,
-                    stackTrace
-                    );
+                SpiraImportExport.RemoteTestRun remoteTestRun = new SpiraImportExport.RemoteTestRun();
+                remoteTestRun.TestCaseId = testCaseId;
+                remoteTestRun.ReleaseId = releaseId;
+                remoteTestRun.TestSetId = testSetId;
+                remoteTestRun.StartDate = startDate;
+                remoteTestRun.EndDate = endDate;
+                remoteTestRun.ExecutionStatusId = executionStatusId;
+                remoteTestRun.RunnerName = TEST_RUNNER_NAME;
+                remoteTestRun.RunnerTestName = testCaseName;
+                remoteTestRun.RunnerAssertCount = assertCount;
+                remoteTestRun.RunnerMessage = message;
+                remoteTestRun.RunnerStackTrace = stackTrace;
+                spiraTestExecuteProxy.TestRun_RecordAutomated1(remoteTestRun);
 
                 //Close the SpiraTest connection
-                spiraTestExecuteProxy.Disconnect();
+                spiraTestExecuteProxy.Connection_Disconnect();
             }
             catch (Exception exception)
             {
