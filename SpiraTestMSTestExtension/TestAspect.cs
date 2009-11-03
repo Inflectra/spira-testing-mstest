@@ -33,6 +33,33 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
             return attribute;
         }
 
+        /// <summary>
+        /// Gets a specific attribute, not the current aspect's
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="attributeType"></param>
+        /// <returns></returns>
+        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.Infrastructure)]
+        protected Attribute GetAttribute(IMessage message, Type attributeType)
+        {
+            string uri = (string)message.Properties[MessageKeys.Uri];
+            string methodName = (string)message.Properties[MessageKeys.MethodName];
+            //string methodSignature = (string)message.Properties[MessageKeys.MethodSignature];
+            string typeName = (string)message.Properties[MessageKeys.TypeName];
+            //string args = (string)message.Properties[MessageKeys.Args];
+            //string callContext = (string)message.Properties[MessageKeys.CallContext];
+
+            Type callingType = Type.GetType(typeName);
+            MethodInfo methodInfo = callingType.GetMethod(methodName);
+            object[] attributes = methodInfo.GetCustomAttributes(attributeType, true);
+            Attribute attribute = null;
+            if (attributes.Length > 0)
+            {
+                attribute = (Attribute)attributes[0];
+            }
+            return attribute;
+        }
+
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.Infrastructure)]
         protected string GetMethodName(IMessage message)
         {

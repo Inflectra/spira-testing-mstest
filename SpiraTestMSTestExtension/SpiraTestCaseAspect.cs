@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using System.Configuration;
 using System.Net;
 using System.Runtime.Remoting.Messaging;
@@ -40,13 +41,16 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
             IMessage returnMessage = _nextSink.SyncProcessMessage(msg);
             DateTime timeAfterTest = DateTime.Now;
 
-            SpiraTestCaseAttribute TestMethodAttribute = GetAttribute(msg);
-            if (TestMethodAttribute != null)
+            //Need to get the SpiraTestCase attribute associated with the test method
+            SpiraTestCaseAttribute testMethodAttribute = GetAttribute(msg);
+            if (testMethodAttribute != null)
             {
-                // Get the TestCaseId
-                this.testCaseId = TestMethodAttribute.TestCaseId;
-                TestCaseResult result = new TestCaseResult();
+                //See if we have a custom SpiraTest configuration attribute also specified
+                SpiraTestConfigurationAttribute testConfigAttribute = (SpiraTestConfigurationAttribute)GetAttribute(msg, typeof(SpiraTestConfigurationAttribute));
 
+                // Get the TestCaseId
+                this.testCaseId = testMethodAttribute.TestCaseId;
+                TestCaseResult result = new TestCaseResult();
                 ReturnMessage returnMsg = returnMessage as ReturnMessage;
 
                 // Get the Test Results
@@ -77,7 +81,7 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
                 bool recordTestRun = Properties.Settings.Default.RecordTestRun;
                 if (recordTestRun)
                 {
-                    Run(result);
+                    Run(testConfigAttribute, result);
                 }
             }
 
@@ -110,7 +114,7 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
         /// </summary>
         /// <param name="result">The test case result</param>
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.Infrastructure)]
-        public void Run(TestCaseResult result)
+        public void Run(SpiraTestConfigurationAttribute testConfigAttribute, TestCaseResult result)
         {
             const string METHOD_NAME = "Run: ";
 
@@ -136,6 +140,17 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
                 if (Int32.TryParse(Properties.Settings.Default.TestSetId, out tempTestSetId))
                 {
                     testSetId = tempTestSetId;
+                }
+
+                //See if we need to override the default configuration settings
+                if (testConfigAttribute != null)
+                {
+                    url = testConfigAttribute.Url;
+                    login = testConfigAttribute.Login;
+                    password = testConfigAttribute.Password;
+                    projectId = testConfigAttribute.ProjectId;
+                    releaseId = testConfigAttribute.ReleaseId;
+                    testSetId = testConfigAttribute.TestSetId;
                 }
 
                 //Now we need to extract the result information

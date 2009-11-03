@@ -27,16 +27,8 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension
             if (msg == null) throw new ArgumentNullException("msg");
 
             SpiraTestConfigurationAttribute TestClassAttribute = GetAttribute(msg);
-            if (TestClassAttribute != null)
-            {
-                //Get the URL, Login, Password, ProjectId and ReleaseId from the test class attribute
-                string url = TestClassAttribute.Url;
-                string login = TestClassAttribute.Login;
-                string password = TestClassAttribute.Password;
-                int projectId = TestClassAttribute.ProjectId;
-                Nullable<int> releaseId = TestClassAttribute.ReleaseId;
-                Nullable<int> testSetId = TestClassAttribute.TestSetId;
-            }
+
+            //We don't do anything here as the config values are read from within the SpiraTestCase aspect instead
 
             IMessage returnMessage = _nextSink.SyncProcessMessage(msg);
 
