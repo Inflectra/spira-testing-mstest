@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="MSTest Extension" default="zipup" basedir="C:\Subversion\Projects\Inflectra\Trunk\Products and Services\Add Ons\MSTest Extension">
+<project name="MSTest Extension" default="zipup">
 	<target name="zipup" description="Zips up the whole application for deployment">
 		<echo message="Zipping up entire application" />
 		<zip zipfile="MSTestExtension.zip" verbose="true" comment="SpiraTest Extension for MS Test">
