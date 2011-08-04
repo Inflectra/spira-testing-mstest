@@ -38,7 +38,7 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension.SampleMSTest
         [
         TestMethod,
         SpiraTestCase(5),
-        SpiraTestConfiguration("http://localhost/Spira", "fredbloggs", "fredbloggs", 1, 1, 2)
+        SpiraTestConfiguration("http://localhost/SpiraTest", "fredbloggs", "fredbloggs", 1, 1, 2)
         ]
         public void SampleFail()
         {
