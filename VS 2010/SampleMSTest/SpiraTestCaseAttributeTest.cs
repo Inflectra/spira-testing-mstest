@@ -8,6 +8,9 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension.SampleMSTest
     /// Sample test fixture that tests the SpiraTest integration
     /// Written by Paul Tissue. Packed by Inflectra Corporation
     /// </summary>
+    /// <remarks>
+    /// Updated on 8/4/2011 to support VS2010
+    /// </remarks>
     [
     TestClass
     ]
@@ -35,7 +38,7 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension.SampleMSTest
         [
         TestMethod,
         SpiraTestCase(5),
-        SpiraTestConfiguration("http://localhost/SpiraTest", "fredbloggs", "fredbloggs", 1, 1, 2)
+        SpiraTestConfiguration("http://localhost/Spira", "fredbloggs", "fredbloggs", 1, 1, 2)
         ]
         public void SampleFail()
         {

@@ -2,7 +2,7 @@
 <project name="MSTest Extension" default="zipup">
 	<target name="zipup" description="Zips up the whole application for deployment">
 		<echo message="Zipping up entire application" />
-		<zip zipfile="MSTestExtension2008.zip" verbose="true" comment="SpiraTest Extension for MS Test 2008">
+		<zip zipfile="MSTestExtension2010.zip" verbose="true" comment="SpiraTest Extension for MS Test 2010">
 			<fileset basedir="SpiraTestMSTestExtension/bin/Release">
 				<include name="SpiraTestMSTestExtension.dll" />
 				<include name="SpiraTestMSTestExtension.dll.config" />
