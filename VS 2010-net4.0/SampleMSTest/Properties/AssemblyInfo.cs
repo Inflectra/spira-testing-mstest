@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Inflectra Corporation")]
 [assembly: AssemblyProduct("SpiraTest")]
-[assembly: AssemblyCopyright("Copyright (C) 2008 Inflectra Corporation")]
+[assembly: AssemblyCopyright("Copyright (C) 2008-2013 Inflectra Corporation")]
 [assembly: AssemblyTrademark("Inflectra and SpiraTest are either registered trademarks or trademarks of Inflectra Corporation in the U.S. and/or other countries.")]
 [assembly: AssemblyCulture("")]
 
@@ -31,4 +31,4 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.5.2.*")]
+[assembly: AssemblyVersion("2.2.0.*")]
