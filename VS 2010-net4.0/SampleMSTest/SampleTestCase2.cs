@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -14,7 +14,7 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension.SampleMSTest
     [
     TestClass
     ]
-    public class SpiraTestCaseAttributeTest : MSTestExtensionsTestFixture
+    public class SampleTestCase2 : MSTestExtensionsTestFixture
     {
         /// <summary>
         /// Test fixture state
@@ -24,7 +24,7 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension.SampleMSTest
         /// <summary>
         /// Constructor method
         /// </summary>
-        public SpiraTestCaseAttributeTest()
+        public SampleTestCase2()
         {
             //Delegates to base
 
@@ -40,7 +40,7 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension.SampleMSTest
         SpiraTestCase(5),
         SpiraTestConfiguration("http://localhost/SpiraTest", "fredbloggs", "fredbloggs", 1, 1, 2)
         ]
-        public void SampleFail()
+        public void SampleTestCase2_SampleFail()
         {
             //Verify the state
             Assert.AreEqual(2, testFixtureState, "*Real Error*: State not persisted");
@@ -61,7 +61,7 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension.SampleMSTest
         TestMethod,
         SpiraTestCase(6)
         ]
-        public void SamplePass()
+        public void SampleTestCase2_SamplePass()
         {
             //Verify the state
             Assert.AreEqual(2, testFixtureState, "*Real Error*: State not persisted");
@@ -77,7 +77,7 @@ namespace Inflectra.SpiraTest.AddOns.SpiraTestMSTestExtension.SampleMSTest
         TestMethod,
         ExpectedException(typeof(AssertFailedException))
         ]
-        public void SampleIgnore()
+        public void SampleTestCase2_SampleIgnore()
         {
             //Verify the state
             Assert.AreEqual(2, testFixtureState, "*Real Error*: State not persisted");
